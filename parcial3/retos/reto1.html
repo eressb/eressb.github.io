@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reto1 piramide</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</head>
+<body>
+    <body>
+        <h1>Generador de Pirámide</h1>
+        <form id="pyramidForm">
+            <label for="height">Ingrese la cantidad (altura ):</label>
+            <input type="number" id="height" name="height" min="1" required>
+            <button type="submit">Generar</button>
+        </form>
+    
+        <iframe id="pdfFrame" width="100%" height="600px"></iframe>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script>
+            document.getElementById('pyramidForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+    
+                const height = parseInt(document.getElementById('height').value);
+                if (isNaN(height) || height <= 0) {
+                    alert('Por favor, ingrese un número válido.');
+                    return;
+                }
+    
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+    
+                let pyramid = '';
+                for (let i = 1; i <= height; i++) {
+                    pyramid += ' '.repeat(height - i) + '*'.repeat(i) + '\n';
+                }
+    
+                doc.text(pyramid, 10, 10);
+                const pdfDataUri = doc.output('datauristring');
+    
+                document.getElementById('pdfFrame').src = pdfDataUri;
+            });
+        </script>
+    </body>
+    </html>
+    
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Generador de Contraseñas 183805</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="genA.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Generador de Contraseñas</h1>
+      <form id="passwordForm">
+        <label for="longitud">Longitud de contraseña (8-15):</label>
+        <input
+          type="number"
+          id="longitud"
+          name="longitud"
+          min="8"
+          max="15"
+          required
+        />
+
+        <label for="min">Incluir letras minúsculas:</label>
+        <select id="min" name="min" required>
+          <option value="yes">Sí</option>
+          <option value="no">No</option>
+        </select>
+
+        <label for="mayus">Incluir letras mayúsculas:</label>
+        <select id="mayus" name="mayus" required>
+          <option value="yes">Sí</option>
+          <option value="no">No</option>
+        </select>
+
+        <label for="num">Incluir números (0-9):</label>
+        <select id="num" name="num" required>
+          <option value="yes">Sí</option>
+          <option value="no">No</option>
+        </select>
+
+        <label for="especial">Incluir caracteres especiales:</label>
+        <select id="especial" name="especial" required>
+          <option value="yes">Sí</option>
+          <option value="no">No</option>
+        </select>
+
+        <label for="cantidad">Cantidad de contraseñas a generar:</label>
+        <input
+          type="number"
+          id="cantidad"
+          name="cantidad"
+          min="1"
+          value="10"
+          required
+        />
+
+        <button type="button" id="generateButton">Generar Contraseñas</button>
+      </form>
+
+      <h2>Contraseñas Generadas:</h2>
+      <pre id="resultado"></pre>
+    </div>
+    <iframe id="pdfFrame" frameborder="1" width="500" height="500"></iframe>
+
+    <script>
+      document
+        .getElementById("generateButton")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+
+          const longitud = parseInt(document.getElementById("longitud").value);
+          const includeMin = document.getElementById("min").value === "yes";
+          const includeMayus = document.getElementById("mayus").value === "yes";
+          const includeNum = document.getElementById("num").value === "yes";
+          const includeEspecial =
+            document.getElementById("especial").value === "yes";
+          const cantidad = parseInt(document.getElementById("cantidad").value);
+
+          const min = "abcdefghijklmnopqrstuvwxyz";
+          const mayus = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+          const num = "0123456789";
+          const especial = "!@#$%^&*()_+[]{}|;:,.<>?";
+
+          let charset = "";
+          if (includeMin) charset += min;
+          if (includeMayus) charset += mayus;
+          if (includeNum) charset += num;
+          if (includeEspecial) charset += especial;
+
+          if (charset === "") {
+            alert("Debe seleccionar al menos una opción de inclusión.");
+            return;
+          }
+
+          function generarPass(longitud) {
+            let password = "";
+            for (let i = 0; i < longitud; i++) {
+              const randomIndex = Math.floor(Math.random() * charset.length);
+              password += charset[randomIndex];
+            }
+            return password;
+          }
+
+          let resultado = "";
+          for (let i = 0; i < cantidad; i++) {
+            resultado += generarPass(longitud) + "\n";
+          }
+
+          document.getElementById("resultado").textContent = resultado;
+
+          var docDefinition = {
+            content: resultado.split("\n").filter((line) => line),
+          };
+
+          pdfMake.createPdf(docDefinition).getDataUrl(function (dataUrl) {
+            document.getElementById("pdfFrame").src = dataUrl;
+          });
+        });
+    </script>
+  </body>
+</html>

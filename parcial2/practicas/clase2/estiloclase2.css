@@ -1,0 +1,24 @@
+h1{
+    font-family: Verdana, 'Geneva', Tahoma, sans-serif;
+}
+body{
+    background-color: #1c7744;
+}
+.blanco{
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+
+}
+.hueso{
+    color: wheat;
+    font-family: Verdana, 'Geneva', Tahoma, sans-serif;
+}
+.amarillo{
+    color: yellow;
+    letter-spacing: 0.1em;
+    font-size: 18px;
+}
+.rojo{
+    color: red;
+    font-family: 'Comic Sans';
+}

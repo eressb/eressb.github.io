@@ -1,0 +1,88 @@
+@font-face {
+    font-family: 'monoton';
+    src: url('examen/VERSIONC/fonts.woff2') format('woff2');
+}
+body {
+    font-family: sans-serif;
+    background-color: black;
+    background-size: 150px;
+}
+h1{
+    color: rgb(8, 221, 8);
+    text-align: center;
+    font-family: 'monoton', sans-serif;
+    font-size: 40px;
+    letter-spacing: 0.3em;
+    background-color: black;
+    
+}
+h2{
+    border: solid 2px;
+    border-radius: 0px 15px 0px 0px;
+    border-color: white;
+    background-color: rgb(8, 221, 8);
+    letter-spacing: 0.3em;
+    color: white;
+    margin: 0px 260px 0px 260px;
+    padding-left:8px ;
+    background-color: color;
+}
+div{
+    border: solid 2px;
+    border-color: white;
+    background-color: black;
+    color: white;
+    letter-spacing: 0.2em;
+    margin: 0px 260px 50px 260px;
+    padding: 8px 8px 8px 8px;
+}
+.imgright {
+    border: solid 4px;
+    border-color: rgb(8, 221, 8);
+    float: right;
+    margin: 10px; 
+    padding: 4px; 
+    background-color: white; 
+    width: 250px;
+    
+}
+.imgleft {
+    border: solid 4px;
+    border-color: rgb(8, 221, 8);
+    float: left;
+    margin: 10px; 
+    padding: 4px; 
+    background-color: white; 
+    width: 220px;
+}
+.logo{
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: white;
+}
+.titulos{
+    color: yellow;
+}
+.nombres{
+    color: red;
+}
+.fechas{
+    color: rgb(23, 195, 23);
+}
+.final{
+    border: solid 2px;
+    border-left: 2px;
+    border-right:2px ;
+    border-color: rgb(8, 221, 8);
+    color: white;
+    margin: 0px 260px 2px 260px;
+    background-color: black;
+}
+.emojis{
+    text-align: center;
+    color: rgb(8, 221, 8);
+    background-color: black;
+}

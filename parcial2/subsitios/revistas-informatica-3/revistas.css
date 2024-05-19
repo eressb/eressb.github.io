@@ -1,0 +1,35 @@
+body {
+    background-color: hwb(150 25% 30%);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 125%;
+    text-align: center;
+    hyphens:auto;
+}
+
+section {
+    display: flex;
+    flex-wrap:wrap ;
+    justify-content:space-around ;
+}
+
+article {
+    display: flex;
+    flex-direction:row ;
+    width: 570px;
+    margin: 50px;
+    border: green 3px solid;
+    background-color: hwb(150 50% 30%);
+}
+
+h2 {
+    margin: 6px;
+    padding: 8px;
+    border-right: green 3px solid;
+    display: block;
+   
+}
+
+div {
+    margin: 20px;
+}
+
